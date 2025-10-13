@@ -16,11 +16,16 @@ export default function SkillTree(){
         setNodes(updated);
     }
 
+    function handleDeletion(id){
+        const updated = nodes.map(node => node.id === id? {...node, filled: false}: node);
+        setNodes(updated);
+    }
+
 
     return(
         <div className={"grid grid-cols-1 gap-4"}>
             {nodes.map(node =>
-            node.filled ? (<SkillNode key={node.id}/>) : (<EmptySkillNode key={node.id} onClick={() => handleSpawn(node.id)}/>))}
+            node.filled ? (<SkillNode key={node.id} onClick={()=>handleDeletion(node.id)}/>) : (<EmptySkillNode key={node.id} onClick={() => handleSpawn(node.id)}/>))}
         </div>
     )
 }
