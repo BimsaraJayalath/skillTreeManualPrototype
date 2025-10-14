@@ -6,8 +6,8 @@ import EmptySkillNode from "@/components/emptySkillNode";
 export default function SkillTree(){
 
     const [nodes, setNodes] = useState([
-        {id: 0, filled:true, parentID: null},
-        {id: 1, filled:false, parentID: 0}
+        {id: 0, filled:true, parentID: null, title: "Root", desc: "Start Here"},
+        {id: 1, filled:false, parentID: 0, title: "Empty", desc: "Click to Spawn"}
     ])
 
     function handleSpawn(id){
@@ -23,7 +23,9 @@ export default function SkillTree(){
             const newNode = {
                 id: Date.now(),
                 filled:false,
-                parentID: id
+                parentID: id,
+                title: "Empty",
+                desc: "Click to Spawn"
             };
             return [...updated, newNode];
         })
@@ -40,7 +42,7 @@ export default function SkillTree(){
     return(
         <div className={"grid grid-cols-1 gap-4"}>
             {nodes.map(node =>
-            node.filled ? (<SkillNode key={node.id}/>) : (<EmptySkillNode key={node.id} onClick={() => handleEmptyNodeClick(node.id)}/>))}
+            node.filled ? (<SkillNode key={node.id} node={node}/>) : (<EmptySkillNode key={node.id} onClick={() => handleEmptyNodeClick(node.id)}/>))}
         </div>
     )
 }
