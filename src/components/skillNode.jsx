@@ -7,6 +7,10 @@
             <button onClick={onDeleteClick}
                     className={"justify-center flex items-center absolute top-1 right-1 cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity bg-red-300 rounded-full hover:bg-red-700"}>X
             </button>
+            <button
+                className={"justify-center flex items-center absolute top-1 left-1 cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity bg-blue-300 rounded-full hover:bg-blue-700"}>
+                E
+            </button>
         </div>
     )
 }
