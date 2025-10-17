@@ -44,7 +44,7 @@ export default function SkillTree({nodes, setNodes, onEdit}) {
                     <EmptySkillNode key={node.id} onClick={() => handleEmptyNodeClick(node.id)}/>))}
             <button
                 className={"cursor-pointer"}
-                onClick={onEdit}>Edit
+                onClick={onEdit(1)}>Edit
             </button>
         </div>
 
