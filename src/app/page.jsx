@@ -25,9 +25,9 @@ export default function Home() {
     return (
         <div className={"grid grid-cols-1 gap-3 justify-center place-items-center"}>
             {editingNodeId === null ? (
-                <SkillTree nodes={nodes} setNodes={setNodes} onEdit={() => setEditingNodeId(1)}/>
+                <SkillTree nodes={nodes} setNodes={setNodes} onEdit={() => handleEditClick(1)}/>
             ) : (
-                <EditModal onCancel={() => setEditingNodeId(null)}/>
+                <EditModal onCancel={handleEditCancel}/>
             )}
         </div>
     )
