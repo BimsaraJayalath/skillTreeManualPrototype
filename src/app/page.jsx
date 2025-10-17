@@ -19,7 +19,6 @@ export default function Home() {
     });
 
     const activeNode = nodes.find((node) => node.id === modal.nodeId);
-    const [isConfirmation, setIsConfirmation] = useState(false);
 
     const handleEditClick = (id) => {
         setModal({type: "Edit", nodeId: id});
