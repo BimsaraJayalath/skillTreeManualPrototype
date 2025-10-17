@@ -4,12 +4,7 @@ import {useState} from "react";
 import SkillNode from "@/components/skillNode";
 import EmptySkillNode from "@/components/emptySkillNode";
 
-export default function SkillTree({onEdit}) {
-
-    const [nodes, setNodes] = useState([
-        {id: 0, filled: true, parentID: null, title: "Root", desc: "Start Here", children: [1]},
-        {id: 1, filled: false, parentID: 0, title: "Empty", desc: "Click to Spawn", children: []}
-    ])
+export default function SkillTree({nodes, setNodes, onEdit}) {
 
     function handleSpawn(id) {
         const updated = nodes.map(node => node.id === id ? {...node, filled: true} : node);
