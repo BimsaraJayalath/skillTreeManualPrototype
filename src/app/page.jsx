@@ -11,9 +11,14 @@ export default function Home() {
         {id: 1, filled: false, parentID: 0, title: "Empty", desc: "Click to Spawn", children: []}
     ])
 
-    const [isEditing, setIsEditing] = useState(false);
+    const [modal, setModal] = useState({
+        type: null,
+        nodeId: null,
+    });
+    
     const [editingNodeId, setEditingNodeId] = useState(null);
     const editingNode = nodes.find((node) => node.id === editingNodeId);
+    const [isConfirmation, setIsConfirmation] = useState(false);
 
     const handleEditClick = (id) => {
         setEditingNodeId(id);
@@ -34,7 +39,7 @@ export default function Home() {
 
     return (
         <div className={"grid grid-cols-1 gap-3 justify-center place-items-center"}>
-            {editingNodeId === null ? (
+            {editingNodeId === null && isConfirmation === false ? (
                 <SkillTree nodes={nodes} setNodes={setNodes} onEdit={handleEditClick}/>
             ) : (
                 <EditModal
