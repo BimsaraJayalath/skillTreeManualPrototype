@@ -21,7 +21,7 @@ export default function ConfirmationModal({node, Message = "Are You Sure?", onCo
             <span>{Message}</span>
             <button
                 className={"cursor-pointer"}
-                onClick={onConfirm}>Confirm
+                onClick={() => onConfirm(node.id)}>Confirm
             </button>
             <button
                 className={"cursor-pointer"}
