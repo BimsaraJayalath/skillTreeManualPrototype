@@ -16,6 +16,7 @@ export default function Home() {
 
     const handleEditClick = (id) => {
         setEditingNodeId(id);
+        console.log("Edit", id);
     }
 
     const handleEditCancel = () => {
