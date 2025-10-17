@@ -1,4 +1,7 @@
 ﻿export default function EditModal() {
+
+    const buttonBase = "cursor-pointer bg-yellow-300 hover:bg-green-300 rounded-2xl p-3 text-black"
+
     return (
         <div className={"flex flex-col items-center"}>
             <div className={"flex flex-col items-center"}>
@@ -12,9 +15,11 @@
                     placeholder={"Enter Description"}
                 />
             </div>
-            <div className={"flex flex-row gap-2"}>
-                <button className={"cursor-pointer"}>Confirm</button>
-                <button className={"cursor-pointer"}>Cancel</button>
+            <div className={"flex flex-row gap-4"}>
+                <button
+                    className={buttonBase}>Confirm
+                </button>
+                <button className={buttonBase}>Cancel</button>
             </div>
         </div>
     )
