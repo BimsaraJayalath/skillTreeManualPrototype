@@ -13,6 +13,7 @@ export default function Home() {
 
     const [isEditing, setIsEditing] = useState(false);
     const [editingNodeId, setEditingNodeId] = useState(null);
+    const editingNode = nodes.find((node) => node.id === editingNodeId);
 
     const handleEditClick = (id) => {
         setEditingNodeId(id);
@@ -26,9 +27,11 @@ export default function Home() {
     return (
         <div className={"grid grid-cols-1 gap-3 justify-center place-items-center"}>
             {editingNodeId === null ? (
-                <SkillTree nodes={nodes} setNodes={setNodes} onEdit={() => handleEditClick}/>
+                <SkillTree nodes={nodes} setNodes={setNodes} onEdit={handleEditClick}/>
             ) : (
-                <EditModal onCancel={handleEditCancel}/>
+                <EditModal
+                    node={editingNode}
+                    onCancel={handleEditCancel}/>
             )}
         </div>
     )
