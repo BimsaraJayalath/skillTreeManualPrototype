@@ -2,6 +2,8 @@
 
 import SkillTree from "@/components/skillTree";
 import EditModal from "@/components/editModal";
+import ConfirmationModal from "@/components/confirmationModal";
+
 import {useState} from "react";
 
 export default function Home() {
@@ -21,11 +23,12 @@ export default function Home() {
     const [isConfirmation, setIsConfirmation] = useState(false);
 
     const handleEditClick = (id) => {
-        setModal("Edit", id)
+        setEditingNodeId(id);
+        setModal({type: "Edit", nodeId: id});
     }
 
     const handleEditCancel = () => {
-        setModal(null)
+        setModal({type: null, nodeId: null});
     }
 
     const handleEditConfirm = (id, newTitle, newDesc) => {
@@ -34,20 +37,32 @@ export default function Home() {
                     : node
             )
         );
-        setModal(null);
+        setModal({type: null, nodeId: null});
     };
 
     return (
         <div className={"grid grid-cols-1 gap-3 justify-center place-items-center"}>
 
-            {modal.type === null ? (
-                <SkillTree nodes={nodes} setNodes={setNodes} onEdit={handleEditClick}/>
-            ) : (
+            {modal.type === null && (
+                <SkillTree
+                    nodes={nodes}
+                    setNodes={setNodes}
+                    onEdit={handleEditClick}
+                />
+            )}
+
+            {modal.type === "Edit" && (
                 <EditModal
                     node={editingNode}
                     onConfirm={handleEditConfirm}
-                    onCancel={handleEditCancel}/>
+                    onCancel={handleEditCancel}
+                />
             )}
+
+            {modal.type === "Confirm" && (
+                <ConfirmationModal/>
+            )}
+
         </div>
-    )
+    );
 }
