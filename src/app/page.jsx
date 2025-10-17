@@ -15,17 +15,17 @@ export default function Home() {
         type: null,
         nodeId: null,
     });
-    
+
     const [editingNodeId, setEditingNodeId] = useState(null);
     const editingNode = nodes.find((node) => node.id === editingNodeId);
     const [isConfirmation, setIsConfirmation] = useState(false);
 
     const handleEditClick = (id) => {
-        setEditingNodeId(id);
+        setModal("Edit", id)
     }
 
     const handleEditCancel = () => {
-        setEditingNodeId(null);
+        setModal(null)
     }
 
     const handleEditConfirm = (id, newTitle, newDesc) => {
@@ -34,12 +34,13 @@ export default function Home() {
                     : node
             )
         );
-        setEditingNodeId(null);
+        setModal(null);
     };
 
     return (
         <div className={"grid grid-cols-1 gap-3 justify-center place-items-center"}>
-            {editingNodeId === null && isConfirmation === false ? (
+
+            {modal.type === null ? (
                 <SkillTree nodes={nodes} setNodes={setNodes} onEdit={handleEditClick}/>
             ) : (
                 <EditModal
