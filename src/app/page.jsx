@@ -43,6 +43,7 @@ export default function Home() {
 
     function handleDeleteConfirm(id) {
         setNodes(prevNodes => prevNodes.filter(node => node.id !== id));
+        setModal({type: null, nodeId: null})
     }
 
     return (
