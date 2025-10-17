@@ -17,12 +17,20 @@ export default function Home() {
 
     const handleEditClick = (id) => {
         setEditingNodeId(id);
-        console.log("Edit", id);
     }
 
     const handleEditCancel = () => {
         setEditingNodeId(null);
     }
+
+    const handleEditConfirm = (id, newTitle, newDesc) => {
+        setNodes(prevNodes => prevNodes.map(node =>
+                node.id === id ? {...node, title: newTitle, desc: newDesc}
+                    : node
+            )
+        );
+        setEditingNodeId(null);
+    };
 
     return (
         <div className={"grid grid-cols-1 gap-3 justify-center place-items-center"}>
@@ -31,6 +39,7 @@ export default function Home() {
             ) : (
                 <EditModal
                     node={editingNode}
+                    onConfirm={handleEditConfirm}
                     onCancel={handleEditCancel}/>
             )}
         </div>

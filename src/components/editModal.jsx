@@ -1,6 +1,11 @@
-﻿export default function EditModal({node, onCancel}) {
+﻿import {useState} from "react";
+
+export default function EditModal({node, onCancel, onConfirm}) {
 
     const buttonBase = "cursor-pointer bg-yellow-300 hover:bg-green-300 rounded-2xl p-3 text-black"
+
+    const [title, setTitle] = useState(node.title);
+    const [desc, setDesc] = useState(node.desc);
 
     if (!node) {
         return (
@@ -22,15 +27,18 @@
                 <span>Title</span>
                 <input
                     type={"text"}
-                    placeholder={node.title}
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
                 />
                 <span>Description</span>
                 <textarea
-                    placeholder={node.desc}
+                    value={desc}
+                    onChange={(e) => setDesc(e.target.value)}
                 />
             </div>
             <div className={"flex flex-row gap-4"}>
                 <button
+                    onClick={() => onConfirm(node.id, title, desc)}
                     className={buttonBase}>Confirm
                 </button>
                 <button
