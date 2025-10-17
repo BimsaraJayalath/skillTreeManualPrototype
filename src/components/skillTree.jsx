@@ -38,7 +38,9 @@ export default function SkillTree({nodes, setNodes, onEdit}) {
     return (
         <div className={"grid grid-cols-1 gap-4"}>
             {nodes.map(node =>
-                node.filled ? (<SkillNode key={node.id} node={node} onDeleteClick={() => handleDeletion(node.id)}/>) : (
+                node.filled ? (<SkillNode key={node.id} node={node}
+                                          onEditClick={onEdit}
+                                          onDeleteClick={() => handleDeletion(node.id)}/>) : (
                     <EmptySkillNode key={node.id} onClick={() => handleEmptyNodeClick(node.id)}/>))}
             <button
                 onClick={onEdit}
