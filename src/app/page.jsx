@@ -37,6 +37,14 @@ export default function Home() {
         setModal({type: null, nodeId: null});
     };
 
+    const handleDeleteClick = (id) => {
+        setModal({type: "Delete", nodeId: id})
+    }
+
+    function handleDeleteConfirm(id) {
+        setNodes(prevNodes => prevNodes.filter(node => node.id !== id));
+    }
+
     return (
         <div className={"grid grid-cols-1 gap-3 justify-center place-items-center"}>
 
@@ -45,6 +53,7 @@ export default function Home() {
                     nodes={nodes}
                     setNodes={setNodes}
                     onEdit={handleEditClick}
+                    onDelete={handleDeleteClick}
                 />
             )}
 
@@ -56,8 +65,11 @@ export default function Home() {
                 />
             )}
 
-            {modal.type === "Confirm" && (
-                <ConfirmationModal/>
+            {modal.type === "Delete" && (
+                <ConfirmationModal
+                    node={activeNode}
+                    onCancel={handleEditCancel}
+                    onConfirm={handleDeleteConfirm}/>
             )}
 
         </div>
