@@ -1,4 +1,4 @@
-﻿export default function EditModal() {
+﻿export default function EditModal({onCancel}) {
 
     const buttonBase = "cursor-pointer bg-yellow-300 hover:bg-green-300 rounded-2xl p-3 text-black"
 
@@ -19,7 +19,10 @@
                 <button
                     className={buttonBase}>Confirm
                 </button>
-                <button className={buttonBase}>Cancel</button>
+                <button
+                    onClick={onCancel}
+                    className={buttonBase}>Cancel
+                </button>
             </div>
         </div>
     )

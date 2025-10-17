@@ -4,7 +4,7 @@ import {useState} from "react";
 import SkillNode from "@/components/skillNode";
 import EmptySkillNode from "@/components/emptySkillNode";
 
-export default function SkillTree() {
+export default function SkillTree({onEdit}) {
 
     const [nodes, setNodes] = useState([
         {id: 0, filled: true, parentID: null, title: "Root", desc: "Start Here", children: [1]},
@@ -45,6 +45,11 @@ export default function SkillTree() {
             {nodes.map(node =>
                 node.filled ? (<SkillNode key={node.id} node={node} onDeleteClick={() => handleDeletion(node.id)}/>) : (
                     <EmptySkillNode key={node.id} onClick={() => handleEmptyNodeClick(node.id)}/>))}
+            <button
+                onClick={onEdit}
+                className={"cursor-pointer"}>Edit
+            </button>
         </div>
+
     )
 }
