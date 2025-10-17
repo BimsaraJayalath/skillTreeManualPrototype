@@ -18,12 +18,10 @@ export default function Home() {
         nodeId: null,
     });
 
-    const [editingNodeId, setEditingNodeId] = useState(null);
-    const editingNode = nodes.find((node) => node.id === editingNodeId);
+    const activeNode = nodes.find((node) => node.id === modal.nodeId);
     const [isConfirmation, setIsConfirmation] = useState(false);
 
     const handleEditClick = (id) => {
-        setEditingNodeId(id);
         setModal({type: "Edit", nodeId: id});
     }
 
@@ -53,7 +51,7 @@ export default function Home() {
 
             {modal.type === "Edit" && (
                 <EditModal
-                    node={editingNode}
+                    node={activeNode}
                     onConfirm={handleEditConfirm}
                     onCancel={handleEditCancel}
                 />
