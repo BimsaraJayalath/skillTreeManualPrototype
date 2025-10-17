@@ -4,14 +4,27 @@ import SkillTree from "@/components/skillTree";
 import EditModal from "@/components/editModal";
 import ConfirmationModal from "@/components/confirmationModal";
 
-import {useState} from "react";
+import {useState, useEffect} from "react";
 
 export default function Home() {
 
     const [nodes, setNodes] = useState([
         {id: 0, filled: true, parentID: null, title: "Root", desc: "Start Here", children: [1]},
         {id: 1, filled: false, parentID: 0, title: "Empty", desc: "Click to Spawn", children: []}
-    ])
+    ]);
+
+    useEffect(() => {
+        const savedNodes = localStorage.getItem("skillTreeNodes");
+        if (savedNodes) {
+            setNodes(JSON.parse(savedNodes));
+        }
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem("skillTreeNodes", JSON.stringify(nodes));
+
+    }, [nodes]);
+
 
     const [modal, setModal] = useState({
         type: null,
