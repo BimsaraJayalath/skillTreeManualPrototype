@@ -9,8 +9,8 @@ import {useState, useEffect} from "react";
 export default function Home() {
 
     const [nodes, setNodes] = useState([
-        {id: 0, filled: true, parentID: null, title: "Root", desc: "Start Here", children: [1]},
-        {id: 1, filled: false, parentID: 0, title: "Empty", desc: "Click to Spawn", children: []}
+        {id: 0, filled: true, parentID: null, title: "Root", desc: "Start Here", children: [1], completed: false},
+        {id: 1, filled: false, parentID: 0, title: "Empty", desc: "Click to Spawn", children: [], completed: false}
     ]);
 
     useEffect(() => {
@@ -59,6 +59,13 @@ export default function Home() {
         setModal({type: null, nodeId: null})
     }
 
+    function handleToggleComplete(id) {
+        setNodes(prevNodes => prevNodes.map(node =>
+            node.id === id ? {...node, completed: !node.completed}
+                : node
+        ));
+    }
+
     return (
         <div className={"grid grid-cols-1 gap-3 justify-center place-items-center"}>
 
@@ -68,6 +75,7 @@ export default function Home() {
                     setNodes={setNodes}
                     onEdit={handleEditClick}
                     onDelete={handleDeleteClick}
+                    onToggleComplete={handleToggleComplete}
                 />
             )}
 

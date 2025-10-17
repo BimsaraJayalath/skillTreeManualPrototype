@@ -4,7 +4,7 @@ import {useState} from "react";
 import SkillNode from "@/components/skillNode";
 import EmptySkillNode from "@/components/emptySkillNode";
 
-export default function SkillTree({nodes, setNodes, onEdit, onDelete}) {
+export default function SkillTree({nodes, setNodes, onEdit, onDelete, onToggleComplete}) {
 
     function handleSpawn(id) {
         const updated = nodes.map(node => node.id === id ? {...node, filled: true} : node);
@@ -30,17 +30,14 @@ export default function SkillTree({nodes, setNodes, onEdit, onDelete}) {
         }
     }
 
-    function handleDeletion(id) {
-        setNodes(prevNodes => prevNodes.filter(node => node.id !== id));
-    }
-
 
     return (
         <div className={"grid grid-cols-1 gap-4"}>
             {nodes.map(node =>
                 node.filled ? (<SkillNode key={node.id} node={node}
                                           onEditClick={() => onEdit(node.id)}
-                                          onDeleteClick={() => onDelete(node.id)}/>) : (
+                                          onDeleteClick={() => onDelete(node.id)}
+                                          onToggleComplete={() => onToggleComplete(node.id)}/>) : (
                     <EmptySkillNode key={node.id} onClick={() => handleEmptyNodeClick(node.id)}/>))}
         </div>
 
