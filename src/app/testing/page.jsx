@@ -5,9 +5,18 @@ import {supabase} from "../lib/supabaseClient";
 export default function Home() {
     useEffect(() => {
         async function testConnection() {
-            const {data, error} = await supabase.from("skillTree Nodes").select("*");
-            console.log("Data:", data);
-            console.log("Error:", error);
+            const {data, error} = await supabase.from("skillTree Nodes").insert([
+                {
+                    title: "Bimbi's Root",
+                    desc: "Oh we gettin there",
+                    filled: true,
+                    completed: false,
+                    parent_id: null,
+                    children: [],
+                },
+            ]).select();
+            
+            console.log("Inserted:", data, "Error:", error);
         }
 
         testConnection();
