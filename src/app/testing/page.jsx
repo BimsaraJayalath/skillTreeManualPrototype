@@ -1,20 +1,21 @@
 ﻿"use client";
+import {useEffect} from "react";
+import {supabase} from "../lib/supabaseClient";
 
-import SkillTree from "@/components/skillTree";
-import EditModal from "@/components/editModal";
-import {useState} from "react";
+export default function Home() {
+    useEffect(() => {
+        async function testConnection() {
+            const {data, error} = await supabase.from("skillTree Nodes").select("*");
+            console.log("Data:", data);
+            console.log("Error:", error);
+        }
 
-export default function testingPage() {
-
-    const [isEditing, setIsEditing] = useState(false);
+        testConnection();
+    }, []);
 
     return (
-        <div className={"grid grid-cols-1 gap-3 justify-center place-items-center"}>
-            {isEditing ? (
-                <EditModal onCancel={() => setIsEditing(false)}/>
-            ) : (
-                <SkillTree onEdit={() => setIsEditing(true)}/>
-            )}
+        <div className="p-10">
+            <h1>Supabase Connection Test</h1>
         </div>
-    )
+    );
 }
