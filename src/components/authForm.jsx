@@ -29,7 +29,7 @@ export default function AuthForm({mode = 'login', onSubmit}) {
     return (
         <form
             onSubmit={handleSubmit}
-            className="flex flex-col gap-4 w-full max-w-sm p-6 border rounded-2xl shadow-md bg-white"
+            className="flex flex-col gap-4 w-full max-w-sm p-6 border rounded-2xl shadow-md bg-black"
         >
             <h2 className="text-xl font-bold text-center">
                 {isSignup ? 'Create Account' : 'Log In'}
